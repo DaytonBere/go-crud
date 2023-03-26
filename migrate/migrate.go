@@ -1,15 +1,14 @@
 package main
 
 import (
-	"github.com/DaytonBere/go-crud/initializers"
-	"github.com/DaytonBere/go-crud/models"
+	"log"
+
+	"github.com/DaytonBere/go-crud/migrate/scripts"
 )
 
-func init () {
-	initializers.LoadEnvVariables()
-	initializers.ConnectToDB()
-}
-
 func main () {
-	initializers.DB.AutoMigrate(&models.Post{})
+	log.Println("Starting migration scripts...")
+	scripts.PostMigrate()
+	scripts.CommentMigrate()
+	log.Println("Done with migration scripts")
 }
